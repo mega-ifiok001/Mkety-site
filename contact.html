@@ -250,37 +250,41 @@
               </div>
               <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7">
                 <div class="contact__form">
-                  <form action="../../../../external.html?link=https://wealcoder.com/dev/html/axtra/assets/mail.php" method="POST">
-                    <div class="row g-3">
-                      <div class="col-xxl-6 col-xl-6 col-12">
-                        <input type="text" name="name" placeholder="Name *">
-                      </div>
-                      <div class="col-xxl-6 col-xl-6 col-12">
-                        <input type="email" name="email" placeholder="Email *">
-                      </div>
-                    </div>
-                    <div class="row g-3">
-                      <div class="col-xxl-6 col-xl-6 col-12">
-                        <input type="tel" name="phone" placeholder="Phone">
-                      </div>
-                      <div class="col-xxl-6 col-xl-6 col-12">
-                        <input type="text" name="subject" placeholder="Subject *">
-                      </div>
-                    </div>
-                    <div class="row g-3">
-                      <div class="col-12">
-                        <textarea name="message" placeholder="Messages *"></textarea>
-                      </div>
-                    </div>
-                    <div class="row g-3">
-                      <div class="col-12">
-                        <div class="btn_wrapper">
-                          <button class="wc-btn-primary btn-hover btn-item"><span></span> Send <br>Messages <i
-                              class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+            <!-- Your Form -->
+<form id="contact-form">
+  <div class="row g-3">
+    <div class="col-xxl-6 col-xl-6 col-12">
+      <input type="text" name="name" placeholder="Name *" required>
+    </div>
+    <div class="col-xxl-6 col-xl-6 col-12">
+      <input type="email" name="email" placeholder="Email *" required>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col-xxl-6 col-xl-6 col-12">
+      <input type="tel" name="phone" placeholder="Phone">
+    </div>
+    <div class="col-xxl-6 col-xl-6 col-12">
+      <input type="text" name="subject" placeholder="Subject *" required>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col-12">
+      <textarea name="message" placeholder="Messages *" required></textarea>
+    </div>
+  </div>
+  <div class="row g-3">
+    <div class="col-12">
+      <div class="btn_wrapper">
+        <button type="submit" class="wc-btn-primary btn-hover btn-item">
+          <span></span> Send <br>Messages
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
                 </div>
               </div>
             </div>
@@ -366,8 +370,33 @@
   </div>
 
 
+  <script>
+    // Handle form submission using EmailJS
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission behavior
+  
+      emailjs.sendForm('service_j648lru', 'template_hq172va', this)
+        .then(function(response) {
+          alert("Message sent successfully!"); // Success message
+          console.log("SUCCESS!", response.status, response.text);
+        }, function(error) {
+          alert("Failed to send message. Please try again."); // Error message
+          console.error("FAILED...", error);
+        });
+    });
+  </script>
+
+
 
   <!-- All JS files -->
+   <!-- Include the EmailJS library -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your User ID
+  (function() {
+    emailjs.init("SbnmOYDz60HqVBefj"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+  })();
+</script>
   <script src="assets/js/jquery-3.6.0.min.js"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/swiper-bundle.min.js"></script>
